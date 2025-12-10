@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://richter-4900-faben.vercel.app/sitemap.xml
+Sitemap: https://richter-4900-farben.vercel.app/sitemap.xml
