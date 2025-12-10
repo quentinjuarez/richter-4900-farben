@@ -25,7 +25,6 @@ const dpr = ref(1);
 const panelSize = 5;
 const panelsPerRow = 14;
 const totalPanels = panelsPerRow * panelsPerRow;
-const totalCells = totalPanels * panelSize * panelSize; // 4900
 
 // --- RNG reproductible ---
 function mulberry32(a: number) {
@@ -43,7 +42,7 @@ function generateRichPalette(seedValue: number) {
   const pal: string[] = [];
 
   while (pal.length < 196) {
-    const baseColor = palette[Math.floor(rng() * palette.length)];
+    const baseColor = palette[Math.floor(rng() * palette.length)] as string;
     const richColor = colorWithVariation(baseColor, rng);
     if (pal.indexOf(richColor) === -1) {
       pal.push(richColor);
@@ -56,7 +55,7 @@ function generateRichPalette(seedValue: number) {
 function colorWithVariation(base: string, rng: () => number) {
   const m = base.match(/hsl\((\d+) (\d+)% (\d+)%\)/);
   if (!m) return base;
-  let [_, h, s, l] = m;
+  let [_, h, s, l] = m as [string, string, string, string];
   h = ((+h + (rng() * 20 - 10) + 360) % 360).toString();
   s = Math.min(100, Math.max(20, +s + (rng() * 20 - 10))).toString();
   l = Math.min(80, Math.max(30, +l + (rng() * 20 - 10))).toString();
@@ -72,7 +71,7 @@ function generatePanels(seedValue: number) {
   for (let p = 0; p < totalPanels; p++) {
     const panel: string[] = [];
     for (let i = 0; i < panelSize * panelSize; i++) {
-      const baseColor = palette[Math.floor(rng() * palette.length)];
+      const baseColor = palette[Math.floor(rng() * palette.length)] as string;
       panel.push(colorWithVariation(baseColor, rng));
     }
     panels.push(panel);
@@ -89,9 +88,9 @@ function assembleGrid(panels: string[][]) {
     for (let row = 0; row < panelSize; row++) {
       for (let px = 0; px < panelsPerRow; px++) {
         const panelIndex = py * panelsPerRow + px;
-        const panel = panels[panelIndex];
+        const panel = panels[panelIndex] as string[];
         for (let col = 0; col < panelSize; col++) {
-          grid.push(panel[row * panelSize + col]);
+          grid.push(panel[row * panelSize + col] as string);
         }
       }
     }
@@ -117,7 +116,7 @@ function draw() {
 
   for (let r = 0; r < panelsPerRow * panelSize; r++) {
     for (let c = 0; c < panelsPerRow * panelSize; c++) {
-      ctx.fillStyle = colors.value[idx++];
+      ctx.fillStyle = colors.value[idx++] as string;
       ctx.fillRect(c * cell, r * cell, cell + 1, cell + 1);
     }
   }
