@@ -101,7 +101,6 @@ function assembleGrid(panels: string[][]) {
 
 // --- Dessin sur canvas ---
 function draw() {
-  console.log('DRAW');
   if (!canvas.value) return;
   const ctx = canvas.value.getContext('2d')!;
   const size = canvas.value.clientWidth;
@@ -111,8 +110,6 @@ function draw() {
 
   const cell = size / (panelsPerRow * panelSize); // 70 cases par ligne
   let idx = 0;
-
-  console.log('SDHQSLKDFHQS');
 
   for (let r = 0; r < panelsPerRow * panelSize; r++) {
     for (let c = 0; c < panelsPerRow * panelSize; c++) {
