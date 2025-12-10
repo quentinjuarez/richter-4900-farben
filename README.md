@@ -4,7 +4,7 @@ A digital, code-based interpretation of **Gerhard Richter’s 2007 artwork _4900
 This simulation reconstructs the **196 industrial color charts** (each a 5×5 grid) and the final **70×70 arrangement**, following the artist’s logic of chance, color systems, and algorithmic distribution.
 
 👉 **Live demo:**  
-https://richter-4900-faben.vercel.app/
+https://richter-4900-farben.vercel.app/
 
 ---
 
