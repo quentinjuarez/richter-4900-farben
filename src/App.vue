@@ -9,6 +9,10 @@
     <div class="absolute bottom-4 left-4 text-xs text-black/50 select-none">
       4900 Farben — Simulation
     </div>
+
+    <div class="absolute bottom-4 right-4 text-xs text-black/50 select-none">
+      Quentin Juarez — {{ new Date().getFullYear() }}
+    </div>
   </div>
 </template>
 
