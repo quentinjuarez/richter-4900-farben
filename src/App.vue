@@ -2,7 +2,7 @@
   <div class="w-screen h-screen flex items-center justify-center bg-white">
     <canvas
       ref="canvas"
-      @click="regen"
+      @click="regen()"
       tabindex="0"
       class="cursor-pointer"
     ></canvas>
@@ -18,7 +18,6 @@ import { palette } from './assets/data.json';
 
 const canvas = ref<HTMLCanvasElement | null>(null);
 const colors = ref<string[]>([]);
-const seed = ref<number | null>(null);
 const dpr = ref(1);
 
 // Dimensions
@@ -120,11 +119,11 @@ function draw() {
 }
 
 // --- Génération complète ---
-function regen() {
-  const seedValue = seed.value ?? Math.floor(Math.random() * 1e9);
-  // seed.value = seedValue;
+function regen(seed?: number) {
+  const newSeed = seed ?? Math.floor(Math.random() * 1e9);
 
-  const panels = generatePanels(seedValue);
+  window.location.hash = String(newSeed);
+  const panels = generatePanels(newSeed);
   colors.value = assembleGrid(panels);
   draw();
 }
@@ -155,7 +154,8 @@ onMounted(() => {
   dpr.value = window.devicePixelRatio || 1;
   nextTick(() => {
     resizeCanvas();
-    regen();
+    const hash = window.location.hash.slice(1);
+    regen(hash ? parseInt(hash, 10) : undefined);
     window.addEventListener('keydown', onKeydown);
     window.addEventListener('resize', resizeCanvas);
   });
