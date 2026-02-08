@@ -8,11 +8,4 @@ export default defineConfig({
     port: 4900,
   },
   plugins: [tailwindcss(), vue()],
-  define: {
-    process: {
-      env: {
-        BACKEND_URL: process.env.BACKEND_URL,
-      },
-    },
-  },
 });
